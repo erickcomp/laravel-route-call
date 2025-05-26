@@ -29,6 +29,10 @@ class RouteCaller
      * @param array $files The input files for the request
      * @param array|null $cookies Cookies to use in the request. These can override or be merged with the current request cookies depending on $cookiesMode.
      * @param string|null $cookiesMode This parameter determines whether the provided cookies should override the current request's cookies or be appended to them.
+     * @param  bool|null  $shouldSkipMiddleware  Whether to skip middleware for this request.
+     *                                           - If `true`, all route middleware will be skipped.
+     *                                           - If `false`, all middleware will run, regardless of any container bindings.
+     *                                           - If `null`, the behavior follows Laravel's default logic using the container binding 'middleware.disable'.
      * 
      * @throws \InvalidArgumentException
      */
@@ -38,8 +42,17 @@ class RouteCaller
         array $input = [],
         ?array $cookies = null,
         ?string $cookiesMode = null,
+        ?bool $shouldSkipMiddleware = null,
     ) {
-        return $this->call('GET', $target, $urlParams, $input, cookies: $cookies, cookiesMode: $cookiesMode);
+        return $this->call(
+            'GET',
+            $target,
+            $urlParams,
+            $input,
+            cookies: $cookies,
+            cookiesMode: $cookiesMode,
+            shouldSkipMiddleware: $shouldSkipMiddleware,
+        );
     }
 
     /**
@@ -51,13 +64,33 @@ class RouteCaller
      * @param array $files The input files for the request
      * @param array|null $cookies Cookies to use in the request. These can override or be merged with the current request cookies depending on $cookiesMode.
      * @param string|null $cookiesMode This parameter determines whether the provided cookies should override the current request's cookies or be appended to them.
+     * @param  bool|null  $shouldSkipMiddleware  Whether to skip middleware for this request.
+     *                                           - If `true`, all route middleware will be skipped.
+     *                                           - If `false`, all middleware will run, regardless of any container bindings.
+     *                                           - If `null`, the behavior follows Laravel's default logic using the container binding 'middleware.disable'.
      * 
      * @throws \InvalidArgumentException
      */
 
-    public function post(string $target, array $urlParams = [], array $input = [], array $files = [], ?array $cookies = null, ?string $cookiesMode = null)
-    {
-        return $this->call('POST', $target, $urlParams, $input, $files, $cookies, $cookiesMode);
+    public function post(
+        string $target,
+        array $urlParams = [],
+        array $input = [],
+        array $files = [],
+        ?array $cookies = null,
+        ?string $cookiesMode = null,
+        ?bool $shouldSkipMiddleware = null,
+    ) {
+        return $this->call(
+            'POST',
+            $target,
+            $urlParams,
+            $input,
+            $files,
+            $cookies,
+            $cookiesMode,
+            $shouldSkipMiddleware,
+        );
     }
 
     /**
@@ -69,12 +102,32 @@ class RouteCaller
      * @param array $files The input files for the request
      * @param array|null $cookies Cookies to use in the request. These can override or be merged with the current request cookies depending on $cookiesMode.
      * @param string|null $cookiesMode This parameter determines whether the provided cookies should override the current request's cookies or be appended to them.
+     * @param  bool|null  $shouldSkipMiddleware  Whether to skip middleware for this request.
+     *                                           - If `true`, all route middleware will be skipped.
+     *                                           - If `false`, all middleware will run, regardless of any container bindings.
+     *                                           - If `null`, the behavior follows Laravel's default logic using the container binding 'middleware.disable'.
      * 
      * @throws \InvalidArgumentException
      */
-    public function put(string $target, array $urlParams, array $input = [], array $files = [], ?array $cookies = null, ?string $cookiesMode = null)
-    {
-        return $this->call('PUT', $target, $urlParams, $input, $files, $cookies, $cookiesMode);
+    public function put(
+        string $target,
+        array $urlParams,
+        array $input = [],
+        array $files = [],
+        ?array $cookies = null,
+        ?string $cookiesMode = null,
+        ?bool $shouldSkipMiddleware = null,
+    ) {
+        return $this->call(
+            'PUT',
+            $target,
+            $urlParams,
+            $input,
+            $files,
+            $cookies,
+            $cookiesMode,
+            $shouldSkipMiddleware,
+        );
     }
 
     /**
@@ -86,12 +139,32 @@ class RouteCaller
      * @param array $files The input files for the request
      * @param array|null $cookies Cookies to use in the request. These can override or be merged with the current request cookies depending on $cookiesMode.
      * @param string|null $cookiesMode This parameter determines whether the provided cookies should override the current request's cookies or be appended to them.
+     * @param  bool|null  $shouldSkipMiddleware  Whether to skip middleware for this request.
+     *                                           - If `true`, all route middleware will be skipped.
+     *                                           - If `false`, all middleware will run, regardless of any container bindings.
+     *                                           - If `null`, the behavior follows Laravel's default logic using the container binding 'middleware.disable'.
      * 
      * @throws \InvalidArgumentException
      */
-    public function patch(string $target, array $urlParams, array $input = [], array $files = [], ?array $cookies = null, ?string $cookiesMode = null)
-    {
-        return $this->call('PATCH', $target, $urlParams, $input, $files, $cookies, $cookiesMode);
+    public function patch(
+        string $target,
+        array $urlParams,
+        array $input = [],
+        array $files = [],
+        ?array $cookies = null,
+        ?string $cookiesMode = null,
+        ?bool $shouldSkipMiddleware = null,
+    ) {
+        return $this->call(
+            'PATCH',
+            $target,
+            $urlParams,
+            $input,
+            $files,
+            $cookies,
+            $cookiesMode,
+            $shouldSkipMiddleware,
+        );
     }
 
     /**
@@ -102,12 +175,30 @@ class RouteCaller
      * @param array $input The input (body) of the request
      * @param array|null $cookies Cookies to use in the request. These can override or be merged with the current request cookies depending on $cookiesMode.
      * @param string|null $cookiesMode This parameter determines whether the provided cookies should override the current request's cookies or be appended to them.
+     * @param  bool|null  $shouldSkipMiddleware  Whether to skip middleware for this request.
+     *                                           - If `true`, all route middleware will be skipped.
+     *                                           - If `false`, all middleware will run, regardless of any container bindings.
+     *                                           - If `null`, the behavior follows Laravel's default logic using the container binding 'middleware.disable'.
      * 
      * @throws \InvalidArgumentException
      */
-    public function delete(string $target, array $urlParams, array $input = [], ?array $cookies = null, ?string $cookiesMode = null)
-    {
-        return $this->call('DELETE', $target, $urlParams, $input, cookies: $cookies, cookiesMode: $cookiesMode);
+    public function delete(
+        string $target,
+        array $urlParams,
+        array $input = [],
+        ?array $cookies = null,
+        ?string $cookiesMode = null,
+        ?bool $shouldSkipMiddleware = null,
+    ) {
+        return $this->call(
+            'DELETE',
+            $target,
+            $urlParams,
+            $input,
+            cookies: $cookies,
+            cookiesMode: $cookiesMode,
+            shouldSkipMiddleware: $shouldSkipMiddleware,
+        );
     }
 
     /**
@@ -120,6 +211,10 @@ class RouteCaller
      * @param array $files The input files for the request
      * @param array|null $cookies Cookies to use in the request. These can override or be merged with the current request cookies depending on $cookiesMode.
      * @param string|null $cookiesMode This parameter determines whether the provided cookies should override the current request's cookies or be appended to them.
+     * @param  bool|null  $shouldSkipMiddleware  Whether to skip middleware for this request.
+     *                                           - If `true`, all route middleware will be skipped.
+     *                                           - If `false`, all middleware will run, regardless of any container bindings.
+     *                                           - If `null`, the behavior follows Laravel's default logic using the container binding 'middleware.disable'.
      * 
      * @throws \InvalidArgumentException
      */
@@ -131,13 +226,14 @@ class RouteCaller
         array $files = [],
         ?array $cookies = null,
         ?string $cookiesMode = null,
+        ?bool $shouldSkipMiddleware = null,
     ) {
 
         /** @var Request */
         $currentRequest = CurrentRequest::getFacadeRoot();
 
         if (!in_array(\strtoupper($method), ['POST', 'PUT', 'PATCH']) && !empty($files)) {
-            throw new InvalidArgumentException("Files can only be uploaded using POST, PUT, or PATCH methods.");
+            throw new \InvalidArgumentException("Files can only be uploaded using POST, PUT, or PATCH methods.");
         }
 
         $requestCookies = $cookies === null
@@ -145,7 +241,7 @@ class RouteCaller
             : match ($cookiesMode) {
                 static::COOKIES_MODE_APPEND => [...$currentRequest->cookies->all(), ...$cookies],
                 static::COOKIES_MODE_OVERRIDE => $cookies,
-                default => throw new InvalidArgumentException(
+                default => throw new \InvalidArgumentException(
                     'When you provide cookies, you must provide the $cookiesMode with one of the following values [' . \implode(', ', static::COOKIES_MODES) . ']'
                 )
             };
@@ -163,7 +259,7 @@ class RouteCaller
 
         $routeUri = $route?->uri() ?? $target;
 
-        if (\in_array(\strtoupper($method), ['POST', 'PUT', 'PATCH', 'DELETE'])) {
+        if ($currentRequest->hasSession() && \in_array(\strtoupper($method), ['POST', 'PUT', 'PATCH', 'DELETE'])) {
             $input['_token'] = $currentRequest->session()->token();
         }
 
@@ -177,6 +273,10 @@ class RouteCaller
         );
 
         $manualRequest->setUserResolver($currentRequest->getUserResolver());
+
+        if ($currentRequest->hasSession()) {
+            $manualRequest->setLaravelSession($currentRequest->session());
+        }
 
         $container = app();
 
@@ -193,8 +293,10 @@ class RouteCaller
 
         $manualRequest->setRouteResolver(fn() => $route);
 
-        $shouldSkipMiddleware = $container->bound('middleware.disable') &&
-            $container->make('middleware.disable') === true;
+        if ($shouldSkipMiddleware === null) {
+            $shouldSkipMiddleware = $container->bound('middleware.disable') &&
+                $container->make('middleware.disable') === true;
+        }
 
         $middleware = $shouldSkipMiddleware ? [] : Route::gatherRouteMiddleware($route);
 
@@ -205,6 +307,7 @@ class RouteCaller
                     ->through($middleware)
                     ->then(fn($req) => $router->prepareResponse($req, $route->run()));
             } catch (\Throwable $t) {
+                \xdebug_break();
                 return $router->prepareResponse($manualRequest, $t);
             }
 
@@ -216,8 +319,8 @@ class RouteCaller
     protected function bindUrlParamsToRoute(RoutingRoute $route, array $urlParams)
     {
         static $routeParamsSetter = function (array $urlParams) {
-            $this->originalParameters = $urlParams;
-            $this->parameters = $urlParams;
+            $this->originalParameters = \array_merge($this->originalParameters, $urlParams);
+            $this->parameters = \array_merge($this->parameters, $urlParams);
         };
 
         $routeParamsSetter->call($route, $urlParams);
