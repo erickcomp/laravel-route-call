@@ -1,0 +1,49 @@
+{
+    "name": "erickcomp/laravel-route-call",
+    "type": "package",
+    "description": "Provides a clean way to call another route within the same application from the current request, without performing a redirect or making an internal HTTP request.",
+    "keywords": [
+        "laravel",
+        "framework",
+        "route",
+        "router"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ErickComp\\RouteCall\\": "src/"
+        },
+        "file": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ErickComp\\RouteCall\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ErickComp\\RouteCall\\RouteCallServiceProvider"
+            ],
+            "dont-discover": []
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.7",
+        "orchestra/testbench": "^9.9",
+        "pestphp/pest-plugin-type-coverage": "^3.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
